@@ -15,6 +15,7 @@ export default function Home() {
 	const catNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые'];
 	const dispatch = useDispatch();
 	const pizzaItems = useSelector(({ pizzas }) => pizzas.pizzaItems);
+	const cartItems = useSelector(({ cart }) => cart.pizzaItems);
 	const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
 	const { sortBy, categories } = useSelector(({ filters }) => filters);
 
@@ -50,7 +51,8 @@ export default function Home() {
 						? pizzaItems.map((pizzaObj) => (
 								<PizzaBlock
 									onClickAddPizza={handleAddPizzaToCart}
-									addedCount={pizzaItems[pizzaItems.id] && pizzaItems[pizzaItems.id].lenght}
+									addedCount={cartItems[pizzaObj.id] && cartItems[pizzaObj.id].pizzaItems.length}
+								
 									{...pizzaObj}
 									key={pizzaObj.id}
 								/>
